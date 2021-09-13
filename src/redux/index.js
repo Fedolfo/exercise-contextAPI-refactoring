@@ -1,23 +1,48 @@
-import { createStore } from 'redux';
-import { MOVE_CAR } from './actionCreators';
 
-const initialState = {
-  cars: {
-    red: false,
-    blue: false,
-    yellow: false,
-  },
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import CarsContext from '../mycontext';
+
+class Provider extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      cars: {
+        red: false,
+        blue: false,
+        yellow: false,
+      },
+    }
+    this.moveCar = this.moveCar.bind(this);
+  }
+
+  moveCar(car, side) {
+    this.setState({
+      cars: {
+        ...this.state.cars,
+        [car]: side,
+      },
+    });
+  };
+
+  render() {
+    const context = {
+      ...this.state,
+      moveCar: this.moveCar,
+    };
+
+    const { children } = this.props;
+
+    return (
+      <CarsContext.Provider value={context}>
+        {children}
+      </CarsContext.Provider>
+    );
+  }
 };
 
-function reducer(state = initialState, action) {
-  switch (action.type) {
-    case MOVE_CAR:
-      return { ...state, cars: { ...state.cars, [action.car]: action.side } };
-    default:
-      return state;
-  }
-}
+Provider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
-const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-
-export default store;
+export default Provider;
