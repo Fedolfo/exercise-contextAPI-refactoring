@@ -15,18 +15,18 @@ class Provider extends Component {
         color: 'red',
       },
     }
-    this.moveCar = this.moveCar.bind(this);
+    // this.moveCar = this.moveCar.bind(this);
     this.changeSignal = this.changeSignal.bind(this);
   }
 
-  moveCar(car, side) {
-    this.setState({
-      cars: {
-        ...this.state.cars,
-        [car]: side,
-      },
-    });
-  };
+  // moveCar(car, side) {
+  //   this.setState({
+  //     cars: {
+  //       ...this.state.cars,
+  //       [car]: side,
+  //     },
+  //   });
+  // };
 
   changeSignal(signalColor) {
     this.setState({
@@ -40,7 +40,7 @@ class Provider extends Component {
   render() {
     const context = {
       ...this.state,
-      moveCar: this.moveCar,
+      // moveCar: this.moveCar,
       changeSignal: this.changeSignal,
     };
 
