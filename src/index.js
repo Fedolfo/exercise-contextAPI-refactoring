@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { Provider } from 'react-redux';
-import store from './redux';
+import CarReducer from './redux/carReducer';
+// import trafficReducer from './redux/trafficReducer';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
+  <CarReducer>
+    {/* <trafficReducer> */}
       <App />
-    </Provider>
-  </React.StrictMode>,
+    {/* </trafficReducer> */}
+  </CarReducer>,
   document.getElementById('root'),
 );

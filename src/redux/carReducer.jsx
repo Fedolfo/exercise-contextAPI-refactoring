@@ -1,25 +1,40 @@
-// src/redux/carReducer.jsx
+import React from 'react';
+import MyContext from '../context/mycontext';
 
-import { MOVE_CAR } from './actionCreators';
+class CarReducer extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      cars: {
+        red: false,
+        blue: false,
+        yellow: false,
+      },
+    }
+    this.moveCar = this.moveCar.bind(this);
+  }
 
-const initialState = {
-  cars: {
-    red: false,
-    blue: false,
-    yellow: false,
-  },
-};
+  moveCar(car, side) {
+    this.setState({
+      ...this.state.cars,
+      [car]: side,
+    })
+  }
 
-function carReducer(state = initialState, action) {
-  switch (action.type) {
-    case MOVE_CAR:
-      return {
-        ...state,
-        cars: { ...state.cars, [action.car]: action.side }
-      };
-    default:
-      return state;
+  render() {
+    const context = {
+      ...this.state.cars,
+     moveCar: this.moveCar,
+    }
+
+    const { children } = this.props;
+
+    return (
+      <MyContext.Provider value={context}>
+        {children}
+      </MyContext.Provider>
+    );
   }
 }
 
-export default carReducer;
+export default CarReducer;

@@ -1,20 +1,30 @@
-// src/redux/trafficReducer.jsx
+import React from "react";
+import myContext from "../context/mycontext";
 
-import { CHANGE_SIGNAL } from './actionCreators';
+class trafficReducer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      signal: { color: 'red' },
+    }
+    this.changeSignal = this.changeSignal.bind(this);
+  }
 
-const initialState = {
-  signal: { color: 'red' },
-}
+  changeSignal = (payload) => (
+    this.setState({ signal: { color: payload }})
+  );
 
-function trafficReducer(state = initialState, action) {
-  switch (action.type) {
-    case CHANGE_SIGNAL:
-      return {
-        ...state,
-        signal: { ...state.signal, color: action.payload }
-      };
-    default:
-      return state;
+  render() {
+    const context = {
+      ...this.state.signal,
+      changeSignal: this.changeSignal,
+    }
+    const { children } = this.props;
+    return (
+      <myContext.Provider value={context}>
+        {children}
+      </myContext.Provider>
+    );
   }
 }
 
