@@ -1,14 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import CarReducer from './redux/carReducer';
-// import trafficReducer from './redux/trafficReducer';
+import Provider from './Provider/Provider';
 
 ReactDOM.render(
-  <CarReducer>
-    {/* <trafficReducer> */}
-      <App />
-    {/* </trafficReducer> */}
-  </CarReducer>,
+  <Provider>
+    <App />
+  </Provider>,
   document.getElementById('root'),
 );

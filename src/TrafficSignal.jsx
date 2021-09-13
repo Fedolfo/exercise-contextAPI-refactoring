@@ -13,8 +13,10 @@ const renderSignal = (signalColor) => {
   return null;
 };
 
-const TrafficSignal = ({ signalColor }) => {
-  const { changeSignal } = this.context;
+class TrafficSignal extends React.Component {
+  render () {
+    const { color } = this.context.signal;
+    const { changeSignal } = this.context;
   return (
     <div>
       <div className="button-container">
@@ -28,18 +30,12 @@ const TrafficSignal = ({ signalColor }) => {
           Green
         </button>
       </div>
-      <img className="signal" src={renderSignal(signalColor)} alt="" />
+      <img className="signal" src={renderSignal(color)} alt="" />
     </div>
   );
+}
 };
 
 TrafficSignal.contextType = MyContext;
-
-// const mapStateToProps = (state) => ({
-//   signalColor: state.trafficReducer.signal.color
-// });
-
-// const mapDispatchToProps = { changeSignal };
-
 
 export default TrafficSignal;

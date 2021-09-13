@@ -1,58 +1,59 @@
-import React from 'react';
+
+import React, { Component } from 'react';
+import myContext from './context/mycontext';
 import carBlue from './images/carBlue.jpeg';
 import carRed from './images/carRed.jpeg';
 import carYellow from './images/carYellow.jpeg';
-import MyContext from './context/mycontext';
 
-class Cars extends React.Component {
-  static contextType = MyContext;
+class Cars extends Component {
+  static contextType = myContext;
   render() {
-    const { redCar, yellowCar, blueCar } = this.context.cars;
+    const { redCar, blueCar, yellowCar } = this.context.cars;
     const { moveCar } = this.context;
-  return (
-    <div>
+    return (
       <div>
-        <img
-          className={redCar ? 'car-right' : 'car-left'}
-          src={carRed}
-          alt="red car"
-        />
-        <button
-          onClick={() => moveCar('red', !redCar)}
-          type="button"
-        >
-          Move
+        <div>
+          <img
+            className={redCar ? 'car-right' : 'car-left'}
+            src={carRed}
+            alt="red car"
+          />
+          <button
+            onClick={() => moveCar('redCar', !redCar)}
+            type="button"
+          >
+            Move
         </button>
-      </div>
-      <div>
-        <img
-          className={blueCar ? 'car-right' : 'car-left'}
-          src={carBlue}
-          alt="blue car"
-        />
-        <button
-          onClick={() => moveCar('blue', !blueCar)}
-          type="button"
-        >
-          Move
+        </div>
+        <div>
+          <img
+            className={blueCar ? 'car-right' : 'car-left'}
+            src={carBlue}
+            alt="blue car"
+          />
+          <button
+            onClick={() => moveCar('blueCar', !blueCar)}
+            type="button"
+          >
+            Move
         </button>
-      </div>
-      <div>
-        <img
-          className={yellowCar ? 'car-right' : 'car-left'}
-          src={carYellow}
-          alt="yellow car"
-        />
-        <button
-          onClick={() => moveCar('yellow', !yellowCar)}
-          type="button"
-        >
-          Move
+        </div>
+        <div>
+          <img
+            className={yellowCar ? 'car-right' : 'car-left'}
+            src={carYellow}
+            alt="yellow car"
+          />
+          <button
+            onClick={() => moveCar('yellowCar', !yellowCar)}
+            type="button"
+          >
+            Move
         </button>
+        </div>
       </div>
-    </div>
-  );
+    )
   }
-}
+};
 
 export default Cars;
